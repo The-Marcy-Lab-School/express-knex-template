@@ -8,20 +8,20 @@ require('dotenv').config();
 module.exports = {
 
   development: {
-    client: process.env.CLIENT || 'pg',
+    client: 'pg',
     connection: {
-      database: process.env.DB || 'postgres',
+      database: process.env.PG_DB || 'postgres',
       user: process.env.PG_USER || 'postgres',
       password: process.env.PG_PASSWORD || 'postgres',
       host: process.env.HOST || 'localhost',
       port: process.env.PG_PORT || 5432,
     },
     migrations: {
-      directory: path.join(__dirname, 'src', 'db', 'migrations')
+      directory: path.join(__dirname, 'src', 'db', 'migrations'),
     },
     seeds: {
-      directory: path.join(__dirname, 'src', 'db', 'seeds')
-    }
+      directory: path.join(__dirname, 'src', 'db', 'seeds'),
+    },
   },
 
 };
