@@ -3,6 +3,8 @@ Starter Code For Building a Node Project With Express, Knex, and Postgres
 
 ## Set Up
 
+Fork this repo to create your own project.
+
 #### Packages
 
 * `npm i` to install `express`, `dotenv`, `knex`, and `pg`
