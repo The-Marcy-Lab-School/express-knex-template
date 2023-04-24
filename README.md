@@ -11,10 +11,10 @@ Starter Code For Building a Node Project With Express, Knex, and Postgres
 #### Set up your DB
 * Create a PostgreSQL DB for your project
 * Make a copy of the `template.env` file called `.env` and add your postgres configuration data.
-* Run `npx knex migrate:make migration_name` to set up your database schema.
-* Run `npx knex migrate:latest` to run your schema.
-* Run `npx knex seed:make seed_name` to create a seed file.
-* Run `npx knex seed:run` to run your seed file.
+* Run `npx knex migrate:make migration_name` to set up your database schema. See [Knex Migrations & Seeds](https://github.com/The-Marcy-Lab-School/Fall-2022-Curriculum-BMC/blob/main/se-unit-7/lesson-8-migrations-and-seeds/notes.md) for guidance.
+  * Run `npx knex migrate:latest` to run your schema.
+* Run `npx knex seed:make seed_name` to create a seed file. See [Knex Migrations & Seeds](https://github.com/The-Marcy-Lab-School/Fall-2022-Curriculum-BMC/blob/main/se-unit-7/lesson-8-migrations-and-seeds/notes.md) for guidance.
+  * Run `npx knex seed:run` to run your seed file.
 
 #### Starting the server
 * `npm start`
