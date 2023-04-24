@@ -5,7 +5,7 @@ Starter Code For Building a Node Project With Express, Knex, and Postgres
 
 Fork this repo to create your own project.
 
-![](img/fs-diagram.svg)
+![](docs/img/fs-diagram.svg)
 
 #### Packages
 

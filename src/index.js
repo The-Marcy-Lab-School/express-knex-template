@@ -1,10 +1,8 @@
 const server = require('./server');
 
-const host = process.env.HOST || 'blah';
-const port = process.env.PORT || 1;
+const host = process.env.HOST || '127.0.0.1';
+const port = process.env.PORT || 8080;
 
-console.log(host, port);
-
-server.listen(port, host, ()=> {
+server.listen(port, host, () => {
   console.log(`Server now listening at http://${host}:${port}/`);
 });
