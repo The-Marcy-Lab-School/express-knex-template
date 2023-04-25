@@ -7,18 +7,27 @@ Starter Code For Building a Node Project With Express, Knex, and Postgres
 
 Fork this repo to create your own project.
 
-#### Packages
+#### Install Packages
 
 * `npm i` to install `express`, `dotenv`, `knex`, and `pg`
 * `npm i -D nodemon` for running the server with hot-reload
 
 #### Set up your DB
-* Create a PostgreSQL DB for your project
+* Create a PostgreSQL DB for your project.
 * Make a copy of the `template.env` file called `.env` and add your postgres configuration data.
-* Run `npx knex migrate:make migration_name` to set up your database schema. See [Knex Migrations & Seeds](https://github.com/The-Marcy-Lab-School/Fall-2022-Curriculum-BMC/blob/main/se-unit-7/lesson-8-migrations-and-seeds/notes.md) for guidance.
-  * Run `npx knex migrate:latest` to run your schema.
-* Run `npx knex seed:make seed_name` to create a seed file. See [Knex Migrations & Seeds](https://github.com/The-Marcy-Lab-School/Fall-2022-Curriculum-BMC/blob/main/se-unit-7/lesson-8-migrations-and-seeds/notes.md) for guidance.
-  * Run `npx knex seed:run` to run your seed file.
+
+#### Create Migration Files
+Run `npx knex migrate:make migration_name` to set up your database schema. See [Knex Migrations & Seeds](https://github.com/The-Marcy-Lab-School/Fall-2022-Curriculum-BMC/blob/main/se-unit-7/lesson-8-migrations-and-seeds/notes.md) for guidance. 
+
+> The examples in this README use a table called `users` with `id` and `username` columns.
+
+Run `npx knex migrate:latest` to run your schema.
+
+#### Create Seed Files
+
+Run `npx knex seed:make seed_name` to create a seed file.  See [Knex Migrations & Seeds](https://github.com/The-Marcy-Lab-School/Fall-2022-Curriculum-BMC/blob/main/se-unit-7/lesson-8-migrations-and-seeds/notes.md) for guidance.
+
+Run `npx knex seed:run` to run your seed file.
 
 #### Starting the server
 * `npm start`
@@ -35,6 +44,7 @@ Example:
 
 ```js
 const knex = require('../knex');
+
 class User {
   async findUserByUsername(username) {
     try {
@@ -50,9 +60,11 @@ class User {
     }
   }
 }
+
+module.exports = User;
 ```
 
-Test out your model's methods by running your model file directly before moving on.
+Test out your model's methods before moving on.
 
 ### Build your API
 
@@ -69,7 +81,8 @@ etc...
 
 > 💡 Tip: We recommend starting your API's endpoints with `/api` as it differentiates it from the static front-end assets that your server will send to the client when they are navigating your client-side application.
 
-In `src/middleware/add-models.js`, import your models. Then, modify the `addModels` middleware function to attach your models to each incoming `req` object. When your controllers are invoked, they will now have access to the models within the `req` object (ex: `req.Users` or `req.Todos`).
+In `src/middleware/add-models.js`, import your models. Then, modify the `addModels` middleware function to attach your models to each incoming `req` object. 
+
 
 Example:
 
@@ -84,7 +97,9 @@ const addModels = (req, res, next) => {
 module.exports = addModels;
 ```
 
-In `src/controllers/` create a new folder for each model. For each URL endpoint that your API will provide, define file containing a single exported method that:
+When your controllers are invoked, they will now have access to the models within the `req` object (ex: `req.Users` or `req.Todos`).
+
+In `src/controllers/` create a new file for the controllers for your model. For each URL endpoint that your API will provide, define a method that:
 * processes the incoming request
 * interacts with the database model
 * and sends back a response.
@@ -98,13 +113,9 @@ const findUserByUsername = async (req, res) => {
   if (!user) res.status(404).send({ msg: 'User Not Found' });
   res.send(user);
 };
-
-module.exports = {
-  findUserByUsername,
-};
 ```
 
-In `src/routes.js`, import your controllers. Then, define the URL endpoints that your API will provide and and assign the appropriate controller to each endpoint.
+In `src/routes.js`, import your controllers (either individually or using a barrel file). Then, define the URL endpoints that your API will provide and and assign the appropriate controller to each endpoint.
 
 Example:
 
