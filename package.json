@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "kickstart": "npm i && npm run migrate && npm run seed && npm start",
-    "start": "node src/index.js",
+    "start": "nodemon src/index.js",
     "dev": "nodemon src/index.js",
     "migrate": "knex migrate:latest",
     "migrate:make": "knex migrate:make",
